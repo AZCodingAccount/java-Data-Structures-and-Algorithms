@@ -1,0 +1,4 @@
+# ignore idea config
+.idea/
+*.iml
+*.iws
