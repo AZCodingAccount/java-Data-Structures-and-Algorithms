@@ -44,6 +44,21 @@ public class ListNode {
         return head.next; // 返回不包含哑节点的链表，这个时候head.next指向第一次插入元素的节点（第一次使用tail.next）
     }
 
+    public static ListNode deepCopy(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode newHead = new ListNode(head.val, null);
+        ListNode currentOriginal = head.next;
+        ListNode currentNew = newHead;
+        while (currentOriginal != null) {
+            currentNew.next = new ListNode(currentOriginal.val, null);
+            currentOriginal = currentOriginal.next;
+            currentNew = currentNew.next;
+        }
+        return newHead;
+    }
+
 
     // 重写toString方法
     @Override
