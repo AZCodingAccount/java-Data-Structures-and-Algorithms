@@ -1,7 +1,5 @@
 package com.zh.algorithm.linkedlist;
 
-import com.zh.datastructures.main.SingleLinkedList;
-
 /**
  * @program: data-structures-and-algorithms
  * @author: AlbertZhang

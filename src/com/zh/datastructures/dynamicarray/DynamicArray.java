@@ -1,4 +1,4 @@
-package com.zh.datastructures.main;
+package com.zh.datastructures.dynamicarray;
 
 
 import java.util.Arrays;

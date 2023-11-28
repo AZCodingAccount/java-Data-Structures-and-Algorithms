@@ -1,6 +1,6 @@
-package com.zh.datastructures.test;
+package com.zh.datastructures.dynamicarray;
 
-import com.zh.datastructures.main.DynamicArray;
+import com.zh.datastructures.dynamicarray.DynamicArray;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
