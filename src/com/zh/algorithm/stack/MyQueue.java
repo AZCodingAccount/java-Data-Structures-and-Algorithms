@@ -36,7 +36,6 @@ public class MyQueue {
         }
         return s1.pop();
     }
-
     /*
      * 查看第一个元素
      * */
