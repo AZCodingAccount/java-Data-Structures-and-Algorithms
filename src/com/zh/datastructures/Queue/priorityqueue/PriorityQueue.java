@@ -73,7 +73,7 @@ public class PriorityQueue<E extends Priority> implements Queue<E>, Iterable<Int
     private void down(int i) {
         int left = i * 2 + 1;
         int right = left + 1;
-        int max = i;  // 假设最大的元素是父节点的元素，不用改变
+        int max = i;  // 假设最大的元素是父节点的元素，不用改变(注意，比较的是arr[max],不是arr[i]如果是arr[i]会导致左右这边的比较失败)
         if (left < size && arr[left].priority() > arr[max].priority()) {
             max = left;   // 更新优先级最大的元素
         }
