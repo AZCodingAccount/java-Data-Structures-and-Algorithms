@@ -1,7 +1,6 @@
-package com.zh.datastructures.deque;
+package com.zh.datastructures.Queue.deque;
 
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * @program: data-structures-and-algorithms
