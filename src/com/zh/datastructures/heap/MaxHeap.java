@@ -18,7 +18,7 @@ public class MaxHeap implements Iterable<Integer> {
      * */
     public int[] arr;   // 存储小顶堆元素
 
-    private int size = 0;   // 小顶堆当前元素个数
+    public int size = 0;   // 小顶堆当前元素个数
 
     private int capacity;   // 小顶堆元素容量
 
@@ -31,6 +31,7 @@ public class MaxHeap implements Iterable<Integer> {
     // 初始化传进来一个数组
     public MaxHeap(int[] arr) {
         this.arr = arr;
+        this.size = arr.length;
         heapify(arr);   // 建堆
     }
 
@@ -45,10 +46,13 @@ public class MaxHeap implements Iterable<Integer> {
         // 找到最后一个不是叶子节点的节点
         int n = size, i = (n >>> 1) - 1;
         // 对每一个节点都执行up操作
-        for (int i1 = i; i1 > 0; i1--) {
-            up(i1);
+        for (int i1 = i; i1 >= 0; i1--) {
+            down(i1);   // 注意这里是down不是up，不然下面的叶子节点根本排序不了
         }
     }
+    // 4
+    // 3 9
+    // 1 2
 
     public boolean offer(int e) {
         // 首先判断当前容量需不需要扩容
@@ -95,22 +99,22 @@ public class MaxHeap implements Iterable<Integer> {
         return true;
     }
 
+
     // 下潜
-    private void down(int parent) {
+    public void down(int parent) {
         int left = 2 * parent + 1;
         int right = left + 1;
         int max = parent; // 假设最小的元素是parent
 
         if (left < size && arr[max] < arr[left]) {
-            swap(max, left); // 交换min和left对应的值
             max = left;   // 更新min的值
         }
         if (right < size && arr[max] < arr[right]) {
-            swap(max, right);
             max = right;
         }
         // 如果是父元素最小的话就不用比较了
         if (max != parent) {
+            swap(parent, max);  // 更新元素的值
             // 继续下潜
             down(max);
         }
@@ -127,7 +131,7 @@ public class MaxHeap implements Iterable<Integer> {
     }
 
     // 交换数组元素
-    private void swap(int parent, int i) {
+    public void swap(int parent, int i) {
         int temp = arr[parent];
         arr[parent] = arr[i];
         arr[i] = temp;

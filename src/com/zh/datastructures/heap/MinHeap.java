@@ -19,7 +19,7 @@ public class MinHeap implements Iterable<Integer> {
      * */
     public int[] arr;   // 存储小顶堆元素
 
-    private int size = 0;   // 小顶堆当前元素个数
+    public int size = 0;   // 小顶堆当前元素个数
 
     private int capacity;   // 小顶堆元素容量
 
@@ -45,9 +45,9 @@ public class MinHeap implements Iterable<Integer> {
     private void heapify(int[] arr) {
         // 找到最后一个不是叶子节点的节点
         int n = size, i = (n >>> 1) - 1;
-        // 对每一个节点都执行up操作
+        // 对每一个节点都执行down操作
         for (int i1 = i; i1 > 0; i1--) {
-            up(i1);
+            down(i1);  // 注意这里是down不是up，不然下面的叶子节点根本排序不了
         }
     }
 
@@ -96,21 +96,20 @@ public class MinHeap implements Iterable<Integer> {
     }
 
     // 下潜
-    private void down(int parent) {
+    public void down(int parent) {
         int left = 2 * parent + 1;
         int right = left + 1;
         int min = parent; // 假设最小的元素是parent
 
         if (left < size && arr[min] > arr[left]) {
-            swap(min, left); // 交换min和left对应的值
             min = left;   // 更新min的值
         }
         if (right < size && arr[min] > arr[right]) {
-            swap(min, right);
             min = right;
         }
         // 如果是父元素最小的话就不用比较了
         if (min != parent) {
+            swap(parent,min);
             // 继续下潜
             down(min);
         }
@@ -127,7 +126,7 @@ public class MinHeap implements Iterable<Integer> {
     }
 
     // 交换数组元素
-    private void swap(int parent, int i) {
+    public void swap(int parent, int i) {
         int temp = arr[parent];
         arr[parent] = arr[i];
         arr[i] = temp;
