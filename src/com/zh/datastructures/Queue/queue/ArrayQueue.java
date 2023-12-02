@@ -1,7 +1,6 @@
-package com.zh.datastructures.Queue;
+package com.zh.datastructures.Queue.queue;
 
 import java.util.Arrays;
-import java.util.Map;
 
 /**
  * @program: data-structures-and-algorithms
