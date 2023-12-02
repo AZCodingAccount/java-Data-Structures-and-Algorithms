@@ -1,6 +1,4 @@
-package com.zh.datastructures.deque;
-
-import java.util.LinkedList;
+package com.zh.datastructures.Queue.deque;
 
 /**
  * @program: data-structures-and-algorithms

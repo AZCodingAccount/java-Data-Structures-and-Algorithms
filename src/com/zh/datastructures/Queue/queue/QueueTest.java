@@ -1,9 +1,8 @@
-package com.zh.datastructures.Queue;
+package com.zh.datastructures.Queue.queue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;

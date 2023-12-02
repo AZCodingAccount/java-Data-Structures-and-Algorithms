@@ -1,6 +1,6 @@
 package com.zh.datastructures.Queue.priorityqueue;
 
-import com.zh.datastructures.Queue.Queue;
+import com.zh.datastructures.Queue.queue.Queue;
 
 import java.util.Iterator;
 

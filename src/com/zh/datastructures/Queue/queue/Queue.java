@@ -1,4 +1,4 @@
-package com.zh.datastructures.Queue;
+package com.zh.datastructures.Queue.queue;
 
 /**
  * @program: data-structures-and-algorithms
