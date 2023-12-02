@@ -1,4 +1,4 @@
-package com.zh.datastructures.Queue.deque;
+package com.zh.datastructures.deque;
 
 import java.util.Iterator;
 
