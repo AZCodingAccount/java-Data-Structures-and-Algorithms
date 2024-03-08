@@ -36,7 +36,11 @@ public class Graph {
         public List<Edge> edges;   // 边的集合
         public Boolean isVisited = false;
 
-        public int inDegree = 0;  // 入度
+        public int inDegree = 0;  // 入度——拓扑排序
+
+        public int status = 0;  // 0未访问 1访问中 2访问完成   拓扑排序中用于DFS算法判断是否存在环
+
+        public int dist = 0;    // 路径算法中到该节点的距离
 
         public Vertex(String name, List<Edge> edges) {
             this.name = name;
