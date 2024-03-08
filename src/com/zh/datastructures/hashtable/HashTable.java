@@ -55,6 +55,7 @@ public class HashTable {
     // 增 改。通过hash找到在表中的哪个格子——>判断格子是否有元素——>有 【判断如果key重复，更新value】 否则尾插法插入；无 新增节点
     private Object put(int hash, Object key, Object value) {
         int idx = hash & (table.length - 1);
+        Object oldValue = null;
         if (table[idx] == null) {
             // 新增元素
             table[idx] = new Entry(hash, key, value);
@@ -64,8 +65,9 @@ public class HashTable {
             while (true) {
                 // key相同，更新value
                 if (p.key != null && p.key.equals(key)) {
+                    oldValue = p.value;
                     p.value = value;
-                    return value;
+                    return oldValue;
                 }
                 // 遍历到头了，尾插法插入，这个放在更新value的后面
                 if (p.next == null) {
@@ -81,7 +83,7 @@ public class HashTable {
             resize();   // 给数组扩容
             threshold = (int) (table.length * loadFactor);  // 更新threshold
         }
-        return value;   // 返回插入的值
+        return null;   // 返回空值
     }
 
     // 查 根据元素key查询value，没有返回null
