@@ -1,5 +1,6 @@
 package com.zh.datastructures.graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,17 +24,19 @@ public class Graph {
          这里采用添加边的时候跟节点关联。不必添加完节点以后手动赋值edges了（两者都是通过节点名先创建接节点再考虑edges的问题）
      */
 
-    private Map<String, Vertex> vertices;   // 存储图的所有节点
+    public Map<String, Vertex> vertices;   // 存储图的所有节点
 
     // 无参构造
     public Graph() {
         this.vertices = new HashMap<>();
     }
 
-    class Vertex {
+    public class Vertex {
         public String name;    // 节点名
-        public List<Edge> edges;   // 边名
+        public List<Edge> edges;   // 边的集合
         public Boolean isVisited = false;
+
+        public int inDegree = 0;  // 入度
 
         public Vertex(String name, List<Edge> edges) {
             this.name = name;
@@ -45,7 +48,7 @@ public class Graph {
         }
     }
 
-    class Edge {
+    public class Edge {
         public Vertex linked;  // 边连接的顶点
         public int height; // 边的权重
 
@@ -53,11 +56,15 @@ public class Graph {
             this.linked = linked;
             this.height = height;
         }
+
+        public Edge(Vertex linked) {
+            this.linked = linked;
+        }
     }
 
     // 添加节点
     public void addVertex(String name) {
-        vertices.put(name, new Vertex(name));
+        vertices.put(name, new Vertex(name, new ArrayList<>()));
     }
 
     /**
@@ -76,6 +83,34 @@ public class Graph {
         if (fromVertex != null && toVertex != null) {
             fromVertex.edges.add(new Edge(toVertex, height));
         }
+    }
+
+    /**
+     * @param from 边的起始节点的名称
+     * @param to   边的结束节点的名称
+     * @return void
+     * @author AlbertZhang
+     * @description 添加不含权重的边
+     * @date 2024-03-08 17:54
+     **/
+    public void addEdge(String from, String to) {
+        Vertex fromVertex = vertices.get(from);
+        Vertex toVertex = vertices.get(to);
+
+        if (fromVertex != null && toVertex != null) {
+            fromVertex.edges.add(new Edge(toVertex));
+        }
+    }
+
+    /**
+     * @param key 头结点的名称
+     * @return com.zh.datastructures.graph.Graph.Vertex 头节点本身
+     * @author AlbertZhang
+     * @description 获取图的头节点
+     * @date 2024-03-08 13:37
+     **/
+    public Vertex getHeadV(String key) {
+        return vertices.get(key);
     }
 
 
