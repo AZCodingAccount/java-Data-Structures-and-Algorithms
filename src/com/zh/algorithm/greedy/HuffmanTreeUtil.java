@@ -106,6 +106,7 @@ public class HuffmanTreeUtil {
                 int right = dfs(node.right, sb.append("1"));
                 count += left + right;
             }
+            // 都处理完成以后可能会出现sb为空的情况，这里判断一下
             if (!sb.isEmpty()) {
                 sb.deleteCharAt(sb.length() - 1); // 往回走的时候移除
             }
