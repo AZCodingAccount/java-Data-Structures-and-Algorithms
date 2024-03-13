@@ -14,9 +14,9 @@ import java.util.PriorityQueue;
 public class HuffmanTreeUtil {
     /*
         哈夫曼树用来解决字符编解码问题，使用贪心思想使得最后对某一数据编码的总和最小。这里实现Huffman树的以下方法：
-            1：给定一个字符串构建哈夫曼树 aabbc
-            2：记录字符串编码，统计字符串编码后的bit数
-            3：编解码
+            1：给定一个字符串构建哈夫曼树 aabbc   buildTree
+            2：记录字符串编码，统计字符串编码后的bit数 dfs
+            3：编解码 两个方法
      */
 
     // 哈夫曼树
