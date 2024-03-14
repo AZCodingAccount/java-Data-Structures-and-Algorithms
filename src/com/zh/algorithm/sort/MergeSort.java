@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @create: 2023-11-15 14:27
  * @description: 归并排序的实现
  **/
-public class MergeSort {
+public class    MergeSort {
     /*
      * 归并排序的思想是先分，分到最后一个元素的时候再治，治完以后再进行合并。采用递归实现
      * 传入三个参数，一个是原数组，一个是left指针，一个是right指针
