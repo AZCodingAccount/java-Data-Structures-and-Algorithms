@@ -25,13 +25,27 @@ public class ReverseList {
     }
 
     public ListNode reverseList(ListNode head) {
-        ListNode n = null;
+     /*   ListNode n = null;
         ListNode p = head;
         while (p != null) {
             // 头插法
             n = new ListNode(p.val, n);
             p = p.next;
         }
-        return n;
+        return n;*/
+        if (head == null) {
+            return null;
+        }
+        // 不使用头插法 1——>2——>3——>4——>5
+        //
+        ListNode prev = null;
+        ListNode p = head;
+        while (p != null) {
+            ListNode next = p.next;     // next=2
+            p.next = prev;              // prev=0
+            prev = p;                   // prev=1
+            p = next;                   // 处理完1以后 p=2
+        }
+        return prev;
     }
 }
