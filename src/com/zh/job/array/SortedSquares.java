@@ -24,7 +24,7 @@ public class SortedSquares {
     }
 
     /*
-            利用题目有序条件双指针，找到非0元素，分别平方，合并两个有序数组
+            利用题目有序条件双指针，找到非0元素，分别平方，合并两个有序数组，中间开花
      */
     public int[] sortedSquares(int[] nums) {
         int length = nums.length;
@@ -37,22 +37,49 @@ public class SortedSquares {
                 break;
             }
         }
+
+        // 1 2 3 4
+        // 考虑全是负数的情况，barrier=0（如果全是正数，就反过来了，程序可以正常处理，所以需要加上一个判断排除全是正数的情况）
+        if (barrier == 0 && nums[0] < 0) {
+            barrier = nums.length;
+        }
         // 处理数组
         for (int i = 0; i < length; i++) {
             nums[i] = nums[i] * nums[i];
         }
-        int left = 0;
+
+        int left = barrier - 1;
         int right = barrier;
-        int j = 0;
-        while (left < barrier || right <length) {
-            if (left < barrier && (nums[left] < nums[right] || right == length - 1)) {
-                left++;
-                arr[j++] = nums[left];
-            }
-            if (right < length && (nums[right] < nums[left] || left == barrier - 1)) {
+        int j = 0;    // 新指针
+        while (left >= 0 || right <= nums.length - 1) {
+            // 左边走到头了
+            if (left < 0) {
+                arr[j] = nums[right];
                 right++;
-                arr[j++] = nums[right];
+                j++;
+                continue;
             }
+            // 右边走到头了
+            if (right > nums.length - 1) {
+                arr[j] = nums[left];
+                left--;
+                j++;
+                continue;
+            }
+            // 正常，两边都没走到头
+            if (nums[left] > nums[right]) {
+                arr[j] = nums[right];
+                right++;
+            } else {
+                arr[j] = nums[left];
+                left--;
+            }
+            j++;
+            //  left  right
+            // [2,1,0,9,16]
+            // [0,1,2,] left=-1,right=3
+            //
+
         }
         return arr;
     }
