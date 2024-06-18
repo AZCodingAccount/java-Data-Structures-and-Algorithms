@@ -1,8 +1,6 @@
 package com.zh.job.tree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @program: data-structures-and-algorithms
@@ -149,6 +147,57 @@ public class BTree {
                 curr = curr.right;
             }
         }
+        return res;
+    }
+
+    /**
+     * 前序遍历—非递归，中前后，每个循环处理一个节点，并把自己的右左节点加入到栈中
+     **/
+    public List<Integer> preorderTraversal2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        if (root != null) {
+            stack.push(root);
+        }
+        while (!stack.isEmpty()) {
+            // 弹出该元素
+            TreeNode popped = stack.pop();
+            res.add(popped.val);
+            // 把右边和左边元素压栈
+            if (popped.right != null) {
+                stack.push(popped.right);
+            }
+            if (popped.left != null) {
+                stack.push(popped.left);
+            }
+        }
+        return res;
+    }
+
+
+    /**
+     * 后序遍历 左右中，从前序遍历改变而来 中左右—>中右左—>左右中，先改变一下压栈的顺序，再翻转一下数组
+     **/
+    public List<Integer> postorderTraversal2(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        if (root != null) {
+            stack.push(root);
+        }
+        while (!stack.isEmpty()) {
+            // 弹出该元素
+            TreeNode popped = stack.pop();
+            res.add(popped.val);
+            // 把左边和右边元素压栈
+            if (popped.left != null) {
+                stack.push(popped.left);
+            }
+            if (popped.right != null) {
+                stack.push(popped.right);
+            }
+        }
+
+        Collections.reverse(res);
         return res;
     }
 
