@@ -26,7 +26,7 @@ public class SumOfLeftLeaves {
             lCount = sumOfLeftLeaves(root.left);
         }
 
-        int rCount = sumOfLeftLeaves(root.right);
+        int rCount = sumOfLeftLeaves(root.right);   // 这里就是移动一下指针，主要还是前面的逻辑处理的
         return lCount + rCount;
     }
 }
