@@ -9,38 +9,31 @@ package com.zh.job.greedy;
 public class WiggleMaxLength {
     /*
             妈妈告诉我们，子序列和子串是不一样的，子序列可以跳着来，不用连续。这里就是找一个上下最多的。
-        因此贪心策略是删除上坡或者下坡的元素，让g点最多即可。最后的值是2*n+1。关心如何判断是上下坡还是g点即可
+        因此贪心策略是删除上坡或者下坡的元素，让g点最多即可。三种情况
+        1：处理首尾元素（也解决了12的情况） preDiff从0开始，加上虚拟头结点。从1开始，默认右边有一个元素
+        2：解决中间有平坡的情况           preDiff==0的情况
+        3：解决连续上坡然后平坡的情况      把preDiff赋值放到坡点改变的情况。
      */
 
     public int wiggleMaxLength(int[] nums) {
         if (nums.length == 1) {
             return 1;
         }
-        int top = 0;    // 坡顶元素个数，不要记录上下坡的元素，那样排除不了单调递增或递减的
-        boolean isRepeat = true;
-        int num = nums[0];    // 基准点，辅助判断数组是否有重复元素
+        int top = 1;    // 摆动元素个数
+        int preDiff = 0;    // 当前节点和上1一个节点的差值
+        int currDiff = 0;   // 下一个节点和当前节点差值
         for (int i = 1; i < nums.length; i++) {
-            if (num != nums[i]) {
-                isRepeat = false;   // 数组中有不重复的元素
-            }
-            if (i < nums.length - 1) {
-                if ((nums[i] > nums[i - 1] && nums[i] > nums[i + 1])
-                        || (nums[i] < nums[i - 1] && nums[i] < nums[i + 1])) {
-                    top++;
-                }
+            currDiff = nums[i] - nums[i - 1];
+            if ((preDiff >= 0 && currDiff < 0)  // 上g点
+                    || (preDiff <= 0 && currDiff > 0)) {    // 下g点
+                top++;
+                preDiff = currDiff; // 解决223的情况
             }
         }
-        // 题中说两个不同的认定摆动序列为2，这个特殊处理一下
-        if (top == 0) {
-            if (!isRepeat) {
-                return 2;
-            }
-            return 1;
-        }
-        return top + 2;
+        return top;
     }
 
     public static void main(String[] args) {
-        System.out.println(new WiggleMaxLength().wiggleMaxLength(new int[]{2, 2}));
+        System.out.println(new WiggleMaxLength().wiggleMaxLength(new int[]{1, 7,4,9,2,5}));
     }
 }
