@@ -42,7 +42,7 @@ public class PermuteUnique {
      * @description dfs遍历
      * @date 2024-03-14 15:46
      **/
-    public static void dfs(int[] nums, boolean[] visited, LinkedList<Integer> stack, List<List<Integer>> res) {
+    private  void dfs(int[] nums, boolean[] visited, LinkedList<Integer> stack, List<List<Integer>> res) {
         // 当栈里面放满了元素的时候，就代表本次遍历完成——递归出口
         if (stack.size() == nums.length) {
             res.add(new ArrayList<>(stack));

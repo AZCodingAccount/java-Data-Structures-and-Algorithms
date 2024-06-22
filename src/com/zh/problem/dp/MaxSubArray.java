@@ -14,7 +14,7 @@ public class MaxSubArray {
      *      dp[i,sum]=dp[i-1,sum-nums[i-1]]+nums[i]
      * }else{
      *      加入该元素与不加入该元素的最大值
-     *      dp[i]=max(dp[])
+     *      dp[i,sum]=max(dp[i,sum-nums[i-1]],dp[i+1,0])
      * }
      * 但是要求必须连续，想一下滑动窗口。如果你加上这个负数小于0了，那么直接从头开始，不然right++，每次移动窗口时检查left小不小于0
      */
@@ -39,5 +39,7 @@ public class MaxSubArray {
                 sum = 0;
             }
         }
+        return sum;
     }
+
 }
