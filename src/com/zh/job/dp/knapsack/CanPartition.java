@@ -1,4 +1,4 @@
-package com.zh.job.dp;
+package com.zh.job.dp.knapsack;
 
 import java.util.Arrays;
 
