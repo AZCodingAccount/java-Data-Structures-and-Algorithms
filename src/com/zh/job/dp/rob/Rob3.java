@@ -1,4 +1,4 @@
-package com.zh.job.dp;
+package com.zh.job.dp.rob;
 
 import com.zh.datastructures.tree.binarytree.TreeNode;
 

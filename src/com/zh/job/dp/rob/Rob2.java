@@ -1,4 +1,4 @@
-package com.zh.job.dp;
+package com.zh.job.dp.rob;
 
 /**
  * @program: data-structures-and-algorithms
