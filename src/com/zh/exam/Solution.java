@@ -7,30 +7,24 @@ import java.util.LinkedList;
 import java.util.List;
 
 class Solution {
-    public int search(int[] nums, int target) {
-        int len=nums.length,left=0,right=len-1;
-        while(left<=right){
-            int mid=left+(right-left)/2;
-            // 落到了左边
-            if(nums[mid]==target) return mid;
-            if(nums[mid]>=nums[0]){
-                if(nums[mid]>target){
-                    right=mid-1;
-                }else{
-                    left=mid+1;
-                }
-            }else{  // 落到了右边
-                if(nums[mid]>target){
-                    right=mid-1;
-                }else{
-                    left=mid+1;
-                }
-            }
-        }
-        return -1;
+    List<LinkedList<Integer>> res = new LinkedList<>();
+
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        dfs(root, 0);
+        return new ArrayList<>(res);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Solution().search(new int[]{4,5,6,7,0,1,2},0));
+    public void dfs(TreeNode node, int depth) {
+        if (node == null) return;
+        if (res.size() <= depth) {
+            res.add(new LinkedList<>());
+        }
+        if (depth % 2 == 0) {
+            res.get(depth).offerLast(node.val);
+        } else {
+            res.get(depth).offerFirst(node.val);
+        }
+        dfs(node.left, depth + 1);
+        dfs(node.right, depth + 1);
     }
 }
