@@ -1,30 +1,53 @@
 package com.zh.exam;
 
-import com.zh.datastructures.tree.binarytree.TreeNode;
+import com.zh.algorithm.linkedlist.ListNode;
+import org.junit.platform.commons.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 class Solution {
-    List<LinkedList<Integer>> res = new LinkedList<>();
+    LinkedList<Integer> stack = new LinkedList<>();
+    LinkedList<Integer> minStack = new LinkedList<>();
 
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        dfs(root, 0);
-        return new ArrayList<>(res);
+    public Solution() {
+
     }
 
-    public void dfs(TreeNode node, int depth) {
-        if (node == null) return;
-        if (res.size() <= depth) {
-            res.add(new LinkedList<>());
+    public void push(int val) {
+        stack.push(val);
+        if (minStack.isEmpty() || val <= minStack.peek()) {
+            minStack.push(val);
         }
-        if (depth % 2 == 0) {
-            res.get(depth).offerLast(node.val);
-        } else {
-            res.get(depth).offerFirst(node.val);
-        }
-        dfs(node.left, depth + 1);
-        dfs(node.right, depth + 1);
     }
+
+    public void pop() {
+        Integer element = stack.pop();
+        if (minStack.isEmpty() && element == minStack.peek()) {
+            minStack.pop();
+        }
+    }
+
+    public int top() {
+        return stack.peek();
+    }
+
+    public int getMin() {
+        return minStack.peek();
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        solution.push(-2);
+        solution.push(0);
+        solution.push(-3);
+        System.out.println(solution.getMin());
+        solution.pop();
+        System.out.println(solution.top());
+        System.out.println(solution.getMin());
+    }
+
+
 }
